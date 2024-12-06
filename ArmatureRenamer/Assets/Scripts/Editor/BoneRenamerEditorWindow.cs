@@ -97,7 +97,11 @@ public class BoneRenamerEditorWindow : EditorWindow
         var originalPath = AssetDatabase.GetAssetPath(_originalModel);
         var pathDirectory = Path.GetDirectoryName(originalPath);
         var finalName = $"{Path.GetFileNameWithoutExtension(originalPath)}_Renamed.fbx";
-        var destinationPath = Path.Combine(pathDirectory, finalName);
+        var destinationPath = EditorUtility.SaveFilePanel("Export renamed model", pathDirectory, finalName, "fbx");
+        if (string.IsNullOrEmpty(destinationPath))
+        {
+            throw new Exception("Save operation canceled");
+        }
 
         ExportModel(_modelTempInstance, destinationPath);
 
