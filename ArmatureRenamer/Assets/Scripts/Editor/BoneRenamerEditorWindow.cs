@@ -19,9 +19,10 @@ public class BoneRenamerEditorWindow : EditorWindow
 
     private void OnGUI()
     {
-        EditorGUILayout.HelpBox("1 - Bring the mode into the project.", MessageType.None);
-        EditorGUILayout.HelpBox("2 - Drag the model into the \"Model\" field.", MessageType.None);
-        EditorGUILayout.HelpBox("3 - Click Rename Bones.", MessageType.None);
+        var guide = "1 - Bring the model into the project.\n" 
+            + "2 - Drag the model into the \"Model\" field.\n" 
+            + "3 - Click Rename Bones.";
+        EditorGUILayout.HelpBox(guide, MessageType.None);
 
         var originalModel = _originalModel;
         _originalModel = (GameObject)EditorGUILayout.ObjectField("Model", originalModel, typeof(GameObject), allowSceneObjects: false);
