@@ -115,7 +115,7 @@ public class BoneRenamerEditorWindow : EditorWindow
             EditorGUIUtility.PingObject(newModel);
         }
 
-        return finalName;
+        return Path.GetFileNameWithoutExtension(destinationPath);
     }
 
     public static void ExportModel(GameObject model, string destinationPath)
@@ -162,7 +162,7 @@ public class BoneRenamerEditorWindow : EditorWindow
 
     private static void SetOption(object instance, string methodName, object value)
     {
-        var method = instance.GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
+        var method = instance.GetType().GetMethod(methodName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         method?.Invoke(instance, new object[] { value });
     }
 }
